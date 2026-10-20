@@ -1,0 +1,57 @@
+# ========== Python ==========
+# 字节码缓存
+__pycache__/
+*.py[codz]
+*$py.class
+
+# 虚拟环境
+.venv/
+venv/
+env/
+ENV/
+
+# 环境变量与密钥
+.env
+.envrc
+
+# 打包与分发产物
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+*.spec
+
+# 测试与覆盖率
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+
+# 编辑器配置
+.idea/
+.vscode/
+*.swp
+
+# ========== 项目特定 ==========
+# 本地依赖与临时目录（沙箱环境开发用）
+.site/
+.sitecustomize/
+.tmp/
+.pip-cache/
+.tmp-tests/
+.runtime-test/
+
+# 运行日志
+logs/
+build.log
+
+# 调试/打包临时输出（不进版本库）
+_*.log
+_out.txt
+_err.txt
+
+# 备份文件
+*.bak

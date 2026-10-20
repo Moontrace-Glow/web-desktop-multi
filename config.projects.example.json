@@ -1,0 +1,93 @@
+{
+  "window_title": "WebDesktop 多项目启动器",
+  "window_size": [
+    1280,
+    860
+  ],
+  "private_mode": false,
+  "close_action": "minimize_to_tray",
+  "kill_on_exit": true,
+  "log_dir": "~/.WebDesktop/log",
+  "projects": [
+    {
+      "id": "my-app",
+      "name": "演示：单服务静态站",
+      "icon": "C:\\path\\to\\project\\app.ico",
+      "url": "http://127.0.0.1:8765",
+      "url_source": "fixed",
+      "openIn": "main",
+      "autoOpen": true,
+      "stop_on_failure": false,
+      "services": [
+        {
+          "name": "web",
+          "exe": "C:\\path\\to\\python.exe",
+          "args": [
+            "-m",
+            "http.server",
+            "8765",
+            "--bind",
+            "127.0.0.1",
+            "--directory",
+            "."
+          ],
+          "cwd": "C:\\path\\to\\project",
+          "port": 8765,
+          "health": "/",
+          "readyWhen": "http",
+          "readyTimeout": 30,
+          "env": {
+            "PYTHONUTF8": "1",
+            "PYTHONIOENCODING": "utf-8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "demo-chain",
+      "name": "演示：双服务依赖",
+      "url": "http://127.0.0.1:8802",
+      "openIn": "main",
+      "autoOpen": true,
+      "services": [
+        {
+          "name": "api",
+          "exe": "C:\\path\\to\\python.exe",
+          "args": [
+            "-m",
+            "http.server",
+            "8801",
+            "--bind",
+            "127.0.0.1",
+            "--directory",
+            "."
+          ],
+          "cwd": "C:\\path\\to\\project",
+          "port": 8801,
+          "health": "/",
+          "readyTimeout": 30
+        },
+        {
+          "name": "web",
+          "exe": "C:\\path\\to\\python.exe",
+          "args": [
+            "-m",
+            "http.server",
+            "8802",
+            "--bind",
+            "127.0.0.1",
+            "--directory",
+            "."
+          ],
+          "cwd": "C:\\path\\to\\project",
+          "port": 8802,
+          "health": "/",
+          "readyTimeout": 30,
+          "dependsOn": [
+            "api"
+          ]
+        }
+      ]
+    }
+  ]
+}
